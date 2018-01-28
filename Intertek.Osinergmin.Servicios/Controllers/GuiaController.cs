@@ -12,7 +12,7 @@ namespace Intertek.Osinergmin.Servicios.Controllers
     [Route("api/Guia")]
     public class GuiaController : Controller
     {
-        [HttpPost(Name = "Listado")]        
+        [HttpGet("Listado")]        
         public List<GuiaListado> Listado()
         {
             return new List<GuiaListado>
