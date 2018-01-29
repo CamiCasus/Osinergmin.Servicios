@@ -7,6 +7,7 @@ namespace Intertek.Osinergmin.Servicios.Entities
 {
     public class GuiaListado
     {
+        public int Id { get; set; }
         public string Codigo { get; set; }
         public string RepresentanteOsinergmin { get; set; }
         public string RepresentanteIntertek { get; set; }
