@@ -1,11 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using Application.Dto.AutoMapper;
+using Application.MainModule;
+using Application.MainModule.Interfaces;
+using AutoMapper;
+using Infraestructura.Data.MainModule;
+using Infraestructura.Data.MainModule.Core;
+using Infraestructura.Data.MainModule.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -25,8 +34,17 @@ namespace Intertek.Osinergmin.Servicios
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<MainModuleContext>(opt => opt.UseInMemoryDatabase("IntertekOsinergminDb"));
+            services.AddAutoMapper(typeof(AutoMapperConfiguration).GetTypeInfo().Assembly);
             services.AddMvc();
             services.AddCors();
+
+
+            services.AddScoped<DbContext, MainModuleContext>();
+            services.AddScoped<IGuiaAppService, GuiaAppService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IGuiaRepository, GuiaRepository>();
+            services.AddScoped<IDetalleGuiaRepository, DetalleGuiaRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +55,7 @@ namespace Intertek.Osinergmin.Servicios
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(options => options.WithOrigins("*").AllowAnyMethod());
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseMvc();
         }
     }
