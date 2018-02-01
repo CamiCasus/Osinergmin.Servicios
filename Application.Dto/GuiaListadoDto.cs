@@ -10,7 +10,7 @@ namespace Application.Dto
         public string Codigo { get; set; }
         public string RepresentanteOsinergmin { get; set; }
         public string RepresentanteIntertek { get; set; }
-        public DateTime FechaRecepccion { get; set; }
+        public DateTime FechaRecepcion { get; set; }
         public int Estado { get; set; }
     }
 }

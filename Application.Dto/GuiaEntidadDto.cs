@@ -8,7 +8,7 @@ namespace Application.Dto
     {
         public int Id { get; set; }
         public string Codigo { get; set; }
-        public DateTime FechaRecepccion { get; set; }
+        public string FechaRecepcion { get; set; }
         public string RepresentanteOsinergmin { get; set; }
         public string DniRepresentanteOsinergmin { get; set; }
         public string RepresentanteIntertek { get; set; }
