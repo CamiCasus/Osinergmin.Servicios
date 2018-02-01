@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Application.MainModule
 {
@@ -32,38 +33,30 @@ namespace Application.MainModule
 
         public IEnumerable<GuiaListadoDto> ObtenerListadoGuia()
         {
-            var resultadoEntidad = _guiaRepository.Find(p => true).ToList();
+            var resultadoEntidad = _guiaRepository.All().ToList();
             return _mapper.Map<IEnumerable<GuiaListadoDto>>(resultadoEntidad);
         }
 
         public IEnumerable<DetalleGuiaListadoDto> ObtenerDetalleGuiaListado(int guiaId)
         {
-            var resultadoEntidad = _detalleGuiaRepository.Find(p => true).ToList();
+            var resultadoEntidad = _detalleGuiaRepository.Find(p => p.GuiaId == guiaId).ToList();
             return _mapper.Map<IEnumerable<DetalleGuiaListadoDto>>(resultadoEntidad);
         }
 
-        public GuiaEntidadDto ObtenerGuia(long guiaId)
+        public async Task<GuiaEntidadDto> ObtenerGuia(int guiaId)
         {
-            var entidadDomain = _guiaRepository.Find(p => p.Id == guiaId).First();
+            var entidadDomain = await _guiaRepository.Get(guiaId, false);
             return _mapper.Map<GuiaEntidadDto>(entidadDomain);
         }
 
-        public void Agregar(GuiaEntidadDto entidadDto)
+        public async Task Agregar(GuiaEntidadDto entidadDto)
         {
-            try
-            {
-                _unitOfWork.BeginTransaction();
+            _unitOfWork.BeginTransaction();
 
-                var entidadDomain = _mapper.Map<GuiaEntity>(entidadDto);
-                _guiaRepository.Add(entidadDomain);
+            var entidadDomain = _mapper.Map<GuiaEntity>(entidadDto);
+            await _guiaRepository.Add(entidadDomain);
 
-                _unitOfWork.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            _unitOfWork.SaveChanges();
         }
 
         public void Eliminar(long id)
@@ -74,6 +67,26 @@ namespace Application.MainModule
             _guiaRepository.Delete(entidadDomain);
 
             _unitOfWork.SaveChanges();
+        }
+
+        public async Task Actualizar(GuiaEntidadDto entidadDto)
+        {
+            try
+            {
+                _unitOfWork.BeginTransaction();
+
+                var entidadDomain = await _guiaRepository.Get(entidadDto.Id);
+                entidadDomain = _mapper.Map(entidadDto, entidadDomain);
+
+                _guiaRepository.Update(entidadDomain);
+
+                _unitOfWork.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
     }
 }

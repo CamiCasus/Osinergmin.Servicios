@@ -34,7 +34,8 @@ namespace Intertek.Osinergmin.Servicios
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MainModuleContext>(opt => opt.UseInMemoryDatabase("IntertekOsinergminDb"));
+            services.AddDbContext<MainModuleContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddAutoMapper(typeof(AutoMapperConfiguration).GetTypeInfo().Assembly);
             services.AddMvc();
             services.AddCors();

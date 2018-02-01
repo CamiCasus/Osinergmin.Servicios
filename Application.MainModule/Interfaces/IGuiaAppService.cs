@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Application.MainModule.Interfaces
 {
@@ -9,9 +10,10 @@ namespace Application.MainModule.Interfaces
     {
         IEnumerable<GuiaListadoDto> ObtenerListadoGuia();
         IEnumerable<DetalleGuiaListadoDto> ObtenerDetalleGuiaListado(int guiaId);
-        GuiaEntidadDto ObtenerGuia(long guiaId);
+        Task<GuiaEntidadDto> ObtenerGuia(int guiaId);
 
-        void Agregar(GuiaEntidadDto entidadDto);
+        Task Agregar(GuiaEntidadDto entidadDto);
+        Task Actualizar(GuiaEntidadDto entidadDto);
         void Eliminar(long id);
     }
 }

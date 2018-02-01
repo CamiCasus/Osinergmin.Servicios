@@ -17,5 +17,7 @@ namespace Application.Dto
         public string Comentario { get; set; }
         public string NombreArchivo { get; set; }
         public string GuiaAdjunta { get; set; }
+
+        public List<DetalleGuiaEntidadDto> DetalleGuia { get; set; }
     }
 }

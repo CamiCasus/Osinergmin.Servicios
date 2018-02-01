@@ -12,7 +12,9 @@ namespace Application.Dto.AutoMapper
         public DtoToDomainMappingProfile()
         {
             CreateMap<GuiaEntidadDto, GuiaEntity>()
-                .ForMember(d => d.FechaRecepcion, x => x.MapFrom(p => DateTime.ParseExact(p.FechaRecepcion, "yyyy-MM-dd", CultureInfo.InvariantCulture)));
+                .ForMember(d => d.FechaRecepcion, x => x.MapFrom(p => DateTime.ParseExact(p.FechaRecepcion, "yyyy-MM-dd", CultureInfo.InvariantCulture)))
+                .ForMember(d => d.Detalles, x => x.MapFrom(p => p.DetalleGuia));
+            CreateMap<DetalleGuiaEntidadDto, DetalleGuiaEntity>();
         }
     }
 }

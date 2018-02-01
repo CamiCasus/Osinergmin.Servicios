@@ -17,15 +17,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Layers", "1-Layers", "{D6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 Presentation", "1.1 Presentation", "{9C1E947B-4A9B-418F-8A8F-2F66A3FC6772}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.MainModule", "Domain.MainModule\Domain.MainModule.csproj", "{B1EC1915-354F-4A68-BE38-9B9ADF7973FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.MainModule", "Domain.MainModule\Domain.MainModule.csproj", "{B1EC1915-354F-4A68-BE38-9B9ADF7973FB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.5.1-Data", "1.5.1-Data", "{2EF1A55F-DE71-451D-A5AB-AD7CE3F84736}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infraestructura.Data.MainModule", "Infraestructura.Data.MainModule\Infraestructura.Data.MainModule.csproj", "{F5796270-D995-4A18-86E9-315230656D11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infraestructura.Data.MainModule", "Infraestructura.Data.MainModule\Infraestructura.Data.MainModule.csproj", "{F5796270-D995-4A18-86E9-315230656D11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.MainModule", "Application.MainModule\Application.MainModule.csproj", "{5F4B7C77-23D4-4CDA-9590-4019537ED91C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.MainModule", "Application.MainModule\Application.MainModule.csproj", "{5F4B7C77-23D4-4CDA-9590-4019537ED91C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Dto", "Application.Dto\Application.Dto.csproj", "{B919CD27-FD8A-479A-9BE0-9333E9063E28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Dto", "Application.Dto\Application.Dto.csproj", "{B919CD27-FD8A-479A-9BE0-9333E9063E28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

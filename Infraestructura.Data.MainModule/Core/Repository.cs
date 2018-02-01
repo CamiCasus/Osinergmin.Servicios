@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Infraestructura.Data.MainModule.Core
 {
@@ -30,9 +31,9 @@ namespace Infraestructura.Data.MainModule.Core
             get { return _dbSet; }
         }
 
-        public virtual TEntity Add(TEntity entity)
+        public async virtual Task Add(TEntity entity)
         {
-            return DbSet.Add(entity).Entity;
+            await DbSet.AddAsync(entity);
         }
 
         public virtual void Delete(TEntity entity)
@@ -43,9 +44,9 @@ namespace Infraestructura.Data.MainModule.Core
             entry.State = EntityState.Deleted;
         }
 
-        public TEntity Get(TId id)
+        public async virtual Task<TEntity> Get(TId id, bool @readonly = true)
         {
-            return DbSet.Find(id);
+            return await DbSet.FindAsync(id);
         }
 
         public virtual void Update(TEntity entity)
@@ -120,9 +121,9 @@ namespace Infraestructura.Data.MainModule.Core
             Context.Dispose();
         }
 
-        public void AddRange(IEnumerable<TEntity> entities)
+        public async Task AddRange(IEnumerable<TEntity> entities)
         {
-            DbSet.AddRange(entities);
+            await DbSet.AddRangeAsync(entities);
         }
 
         #endregion

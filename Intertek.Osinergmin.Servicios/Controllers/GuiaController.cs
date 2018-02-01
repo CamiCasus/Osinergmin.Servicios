@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Dto;
 using Application.MainModule.Interfaces;
-using Intertek.Osinergmin.Servicios.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Intertek.Osinergmin.Servicios.Controllers
@@ -88,19 +85,32 @@ namespace Intertek.Osinergmin.Servicios.Controllers
         }
 
         [HttpGet("{guiaId}", Name = "GetTodo")]
-        public IActionResult GetById(long guiaId)
+        public async Task<IActionResult> GetById(int guiaId)
         {
-            var guiaEntidad = _guiaAppService.ObtenerGuia(guiaId);            
+            var guiaEntidad = await _guiaAppService.ObtenerGuia(guiaId);            
             return new ObjectResult(guiaEntidad);
         }
 
-        [HttpPost("registrar")]
-        public IActionResult Registrar([FromBody] GuiaEntidadDto item)
+        [HttpPost]
+        public async Task<IActionResult> Registrar([FromBody] GuiaEntidadDto item)
         {
             if (item == null)
                 return BadRequest();
 
-            _guiaAppService.Agregar(item);
+            await _guiaAppService.Agregar(item);
+            return new NoContentResult();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] GuiaEntidadDto item)
+        {
+            if (item == null)
+            {
+                return BadRequest();
+            }
+
+            await _guiaAppService.Actualizar(item);
+         
             return new NoContentResult();
         }
 
