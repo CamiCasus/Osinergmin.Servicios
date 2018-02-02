@@ -7,7 +7,6 @@ namespace Domain.MainModule.Entities
     public class DetalleGuiaEntity
     {
         public int Id { get; set; }
-        public string CodigoProducto { get; set; }
         public string CodigoEstablecimiento { get; set; }
         public int CantidadMuestras { get; set; }
         public DateTime FechaMuestreo { get; set; }
@@ -19,10 +18,12 @@ namespace Domain.MainModule.Entities
         public string TipoEnvase { get; set; }
         public string NombreArchivo { get; set; }
         public string FotoMuestra { get; set; }
-        public int TipoMuestra { get; set; }
+        public string Observaciones { get; set; }
 
         public int GuiaId { get; set; }
+        public int ProductoId { get; set; }
 
         public GuiaEntity Guia { get; set; }
+        public ProductoEntity Producto { get; set; }
     }
 }

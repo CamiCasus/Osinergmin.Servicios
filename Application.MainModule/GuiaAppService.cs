@@ -71,22 +71,12 @@ namespace Application.MainModule
 
         public async Task Actualizar(GuiaEntidadDto entidadDto)
         {
-            try
-            {
-                _unitOfWork.BeginTransaction();
+            _unitOfWork.BeginTransaction();
 
-                var entidadDomain = await _guiaRepository.Get(entidadDto.Id);
-                entidadDomain = _mapper.Map(entidadDto, entidadDomain);
+            var entidadDomain = await _guiaRepository.Get(entidadDto.Id, false);
+            entidadDomain = _mapper.Map(entidadDto, entidadDomain);
 
-                _guiaRepository.Update(entidadDomain);
-
-                _unitOfWork.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            _unitOfWork.SaveChanges();
         }
     }
 }

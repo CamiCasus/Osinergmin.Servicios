@@ -16,7 +16,12 @@ namespace Application.Dto.AutoMapper
                 .ForMember(d => d.FechaRecepcion, x => x.MapFrom(p => p.FechaRecepcion.ToString("yyyy-MM-dd")))
                 .ForMember(d => d.DetalleGuia, x => x.MapFrom(p => p.Detalles));
 
-            CreateMap<DetalleGuiaEntity, DetalleGuiaEntidadDto>();
+            CreateMap<DetalleGuiaEntity, DetalleGuiaEntidadDto>()
+                .ForMember(d => d.FechaMuestreo, x => x.MapFrom(p => p.FechaMuestreo.ToString("yyyy-MM-dd")))
+                .ForMember(d => d.TipoProducto, x => x.MapFrom(p => p.Producto.TipoProducto))
+                .ForMember(d => d.NombreProducto, x => x.MapFrom(p => p.Producto.Nombre));
+
+            CreateMap<ProductoEntity, ProductoEntidadDto>();
         }
     }
 }

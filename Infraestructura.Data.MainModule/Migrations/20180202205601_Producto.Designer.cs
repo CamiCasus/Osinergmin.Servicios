@@ -11,9 +11,10 @@ using System;
 namespace Infraestructura.Data.MainModule.Migrations
 {
     [DbContext(typeof(MainModuleContext))]
-    partial class MainModuleContextModelSnapshot : ModelSnapshot
+    [Migration("20180202205601_Producto")]
+    partial class Producto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,6 +29,8 @@ namespace Infraestructura.Data.MainModule.Migrations
                     b.Property<int>("CantidadMuestras");
 
                     b.Property<string>("CodigoEstablecimiento");
+
+                    b.Property<string>("CodigoProducto");
 
                     b.Property<DateTime>("FechaMuestreo");
 
@@ -45,19 +48,15 @@ namespace Infraestructura.Data.MainModule.Migrations
 
                     b.Property<string>("NumeroPrescintoLaboratorio");
 
-                    b.Property<string>("Observaciones");
-
                     b.Property<string>("OrigenProducto");
 
-                    b.Property<int>("ProductoId");
-
                     b.Property<string>("TipoEnvase");
+
+                    b.Property<int>("TipoMuestra");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GuiaId");
-
-                    b.HasIndex("ProductoId");
 
                     b.ToTable("DetalleGuia");
                 });
@@ -153,11 +152,6 @@ namespace Infraestructura.Data.MainModule.Migrations
                     b.HasOne("Domain.MainModule.Entities.GuiaEntity", "Guia")
                         .WithMany("Detalles")
                         .HasForeignKey("GuiaId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Domain.MainModule.Entities.ProductoEntity", "Producto")
-                        .WithMany()
-                        .HasForeignKey("ProductoId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

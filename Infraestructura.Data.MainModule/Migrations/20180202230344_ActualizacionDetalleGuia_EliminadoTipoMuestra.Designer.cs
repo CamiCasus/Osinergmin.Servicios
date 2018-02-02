@@ -11,9 +11,10 @@ using System;
 namespace Infraestructura.Data.MainModule.Migrations
 {
     [DbContext(typeof(MainModuleContext))]
-    partial class MainModuleContextModelSnapshot : ModelSnapshot
+    [Migration("20180202230344_ActualizacionDetalleGuia_EliminadoTipoMuestra")]
+    partial class ActualizacionDetalleGuia_EliminadoTipoMuestra
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,8 +45,6 @@ namespace Infraestructura.Data.MainModule.Migrations
                     b.Property<string>("NumeroPrescintoDirimencia");
 
                     b.Property<string>("NumeroPrescintoLaboratorio");
-
-                    b.Property<string>("Observaciones");
 
                     b.Property<string>("OrigenProducto");
 

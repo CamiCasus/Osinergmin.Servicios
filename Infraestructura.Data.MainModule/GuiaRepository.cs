@@ -16,12 +16,11 @@ namespace Infraestructura.Data.MainModule
 
         public async override Task<GuiaEntity> Get(int id, bool @readonly = true)
         {
-            var listaIncluyendoDetalles = DbSet.Include(p => p.Detalles);
-
-            if (@readonly)
-                return await listaIncluyendoDetalles.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
-
-            return await listaIncluyendoDetalles.FirstOrDefaultAsync(p => p.Id == id);
+            return await
+                    (@readonly ? DbSet.AsNoTracking() : DbSet)
+                        .Include(p => p.Detalles)
+                        .ThenInclude(d => d.Producto)
+                        .FirstOrDefaultAsync(p => p.Id == id);
         }
     }
 }

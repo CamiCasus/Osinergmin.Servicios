@@ -46,6 +46,8 @@ namespace Intertek.Osinergmin.Servicios
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IGuiaRepository, GuiaRepository>();
             services.AddScoped<IDetalleGuiaRepository, DetalleGuiaRepository>();
+            services.AddScoped<IProductoAppService, ProductoAppService>();
+            services.AddScoped<IProductoRepository, ProductoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
