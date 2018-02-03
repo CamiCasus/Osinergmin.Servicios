@@ -22,6 +22,7 @@ namespace Application.Dto.AutoMapper
                 .ForMember(d => d.NombreProducto, x => x.MapFrom(p => p.Producto.Nombre));
 
             CreateMap<ProductoEntity, ProductoEntidadDto>();
+            CreateMap<ItemTablaEntity, ItemTablaEntidadDto>();
         }
     }
 }
