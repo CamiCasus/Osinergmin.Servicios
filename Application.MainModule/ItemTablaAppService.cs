@@ -1,4 +1,5 @@
 ﻿using Application.Dto;
+using Application.MainModule.Core;
 using Application.MainModule.Interfaces;
 using AutoMapper;
 using Infraestructura.Data.MainModule.Core;
@@ -7,19 +8,16 @@ using System.Collections.Generic;
 
 namespace Application.MainModule
 {
-    public class ItemTablaAppService : IItemTablaAppService
+    public class ItemTablaAppService : BaseAppService, IItemTablaAppService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
         private readonly IItemTablaRepository _itemTablaRepository;
 
         public ItemTablaAppService(
             IUnitOfWork unitOfWork,
             IMapper mapper,
             IItemTablaRepository itemTablaRepository)
+            :base(unitOfWork, mapper)
         {
-            _mapper = mapper;
-            _unitOfWork = unitOfWork;
             _itemTablaRepository = itemTablaRepository;
         }
 

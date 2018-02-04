@@ -1,4 +1,5 @@
 ﻿using Application.Dto;
+using Application.MainModule.Core;
 using Application.MainModule.Interfaces;
 using AutoMapper;
 using Domain.MainModule.Entities;
@@ -12,10 +13,8 @@ using System.Threading.Tasks;
 
 namespace Application.MainModule
 {
-    public class GuiaAppService : IGuiaAppService
+    public class GuiaAppService : BaseAppService, IGuiaAppService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
         private readonly IGuiaRepository _guiaRepository;
         private readonly IDetalleGuiaRepository _detalleGuiaRepository;        
 
@@ -24,11 +23,10 @@ namespace Application.MainModule
             IMapper mapper,
             IGuiaRepository guiaRepository, 
             IDetalleGuiaRepository detalleGuiaRepository)
+            :base(unitOfWork, mapper)
         {
             _guiaRepository = guiaRepository;
             _detalleGuiaRepository = detalleGuiaRepository;
-            _mapper = mapper;
-            _unitOfWork = unitOfWork;
         }
 
         public IEnumerable<GuiaListadoDto> ObtenerListadoGuia()

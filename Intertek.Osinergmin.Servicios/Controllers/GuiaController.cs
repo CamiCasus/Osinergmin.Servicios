@@ -28,60 +28,6 @@ namespace Intertek.Osinergmin.Servicios.Controllers
         public List<DetalleGuiaListadoDto> Detalle(int id)
         {
             return _guiaAppService.ObtenerDetalleGuiaListado(id).ToList();
-
-            //var codigoGuia = listaGuiasListado.First(p => p.Id == id).Codigo;
-
-            //return new List<DetalleGuiaListado>
-            //{
-            //    new DetalleGuiaListado
-            //    {
-            //        Id = 1,
-            //        Guia =codigoGuia,
-            //        NumeroMuestra = 2,
-            //        TipoMuestra = 1,
-            //        Ensayos = "densidad, octanaje"
-            //    },
-            //    new DetalleGuiaListado
-            //    {
-            //        Id = 2,
-            //        Guia =codigoGuia,
-            //        NumeroMuestra = 2,
-            //        TipoMuestra = 2,
-            //        Ensayos = "densidad, octanaje"
-            //    },
-            //    new DetalleGuiaListado
-            //    {
-            //        Id = 3,
-            //        Guia =codigoGuia,
-            //        NumeroMuestra = 2,
-            //        TipoMuestra = 2,
-            //        Ensayos = "densidad, octanaje"
-            //    },
-            //    new DetalleGuiaListado
-            //    {
-            //        Id = 4,
-            //        Guia =codigoGuia,
-            //        NumeroMuestra = 2,
-            //        TipoMuestra = 1,
-            //        Ensayos = "densidad, octanaje"
-            //    },
-            //    new DetalleGuiaListado
-            //    {
-            //        Id = 5,
-            //        Guia =codigoGuia,
-            //        NumeroMuestra = 2,
-            //        TipoMuestra = 1,
-            //        Ensayos = "densidad, octanaje"
-            //    },
-            //    new DetalleGuiaListado
-            //    {
-            //        Id = 6,
-            //        Guia =codigoGuia,
-            //        NumeroMuestra = 2,
-            //        TipoMuestra = 2,
-            //        Ensayos = "densidad, octanaje"
-            //    }
-            //};
         }
 
         [HttpGet("{guiaId}", Name = "GetTodo")]

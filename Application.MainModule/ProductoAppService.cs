@@ -1,4 +1,5 @@
 ﻿using Application.Dto;
+using Application.MainModule.Core;
 using Application.MainModule.Interfaces;
 using AutoMapper;
 using Infraestructura.Data.MainModule.Core;
@@ -9,19 +10,16 @@ using System.Text;
 
 namespace Application.MainModule
 {
-    public class ProductoAppService : IProductoAppService
+    public class ProductoAppService : BaseAppService, IProductoAppService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
         private readonly IProductoRepository _productoRepository;
 
         public ProductoAppService(
             IUnitOfWork unitOfWork,
             IMapper mapper,
             IProductoRepository productoRepository)
+            :base(unitOfWork, mapper)
         {           
-            _mapper = mapper;
-            _unitOfWork = unitOfWork;
             _productoRepository = productoRepository;
         }
 
