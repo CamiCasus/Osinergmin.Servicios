@@ -7,6 +7,7 @@ using Application.Dto.AutoMapper;
 using Application.MainModule;
 using Application.MainModule.Interfaces;
 using AutoMapper;
+using Domain.MainModule.Osinergmin;
 using Infraestructura.Data.MainModule;
 using Infraestructura.Data.MainModule.Core;
 using Infraestructura.Data.MainModule.Interfaces;
@@ -40,6 +41,7 @@ namespace Intertek.Osinergmin.Servicios
             services.AddMvc();
             services.AddCors();
 
+            services.AddSingleton(Configuration.GetSection("Osinergmin").Get<OsinergminConfig>());
 
             services.AddScoped<DbContext, MainModuleContext>();
             services.AddScoped<IGuiaAppService, GuiaAppService>();
@@ -52,6 +54,7 @@ namespace Intertek.Osinergmin.Servicios
             services.AddScoped<IItemTablaRepository, ItemTablaRepository>();
             services.AddScoped<IUsuarioAppService, UsuarioAppService>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IOsinergminRepository, OsinergminRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

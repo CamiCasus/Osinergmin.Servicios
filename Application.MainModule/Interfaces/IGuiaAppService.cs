@@ -1,7 +1,6 @@
 ﻿using Application.Dto;
-using System;
+using Domain.MainModule.Osinergmin;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.MainModule.Interfaces
@@ -12,8 +11,8 @@ namespace Application.MainModule.Interfaces
         IEnumerable<DetalleGuiaListadoDto> ObtenerDetalleGuiaListado(int guiaId);
         Task<GuiaEntidadDto> ObtenerGuia(int guiaId);
 
-        Task Agregar(GuiaEntidadDto entidadDto);
-        Task Actualizar(GuiaEntidadDto entidadDto);
+        Task<OsinergminResponse> Agregar(GuiaEntidadDto entidadDto);
+        Task<OsinergminResponse> Actualizar(GuiaEntidadDto entidadDto);
         void Eliminar(long id);
     }
 }

@@ -28,7 +28,7 @@ namespace Intertek.Osinergmin.Servicios.Controllers
         public List<DetalleGuiaListadoDto> Detalle(int id)
         {
             return _guiaAppService.ObtenerDetalleGuiaListado(id).ToList();
-        }
+        }        
 
         [HttpGet("{guiaId}", Name = "GetTodo")]
         public async Task<IActionResult> GetById(int guiaId)
@@ -43,8 +43,8 @@ namespace Intertek.Osinergmin.Servicios.Controllers
             if (item == null)
                 return BadRequest();
 
-            await _guiaAppService.Agregar(item);
-            return new NoContentResult();
+            var responseOsinergmin = await _guiaAppService.Agregar(item);
+            return new ObjectResult(responseOsinergmin);
         }
 
         [HttpPut]
@@ -55,9 +55,9 @@ namespace Intertek.Osinergmin.Servicios.Controllers
                 return BadRequest();
             }
 
-            await _guiaAppService.Actualizar(item);
-         
-            return new NoContentResult();
+            var responseOsinergmin = await _guiaAppService.Actualizar(item);
+
+            return new ObjectResult(responseOsinergmin);
         }
 
         [HttpDelete("{id}")]

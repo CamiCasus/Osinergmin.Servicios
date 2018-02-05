@@ -25,5 +25,7 @@ namespace Domain.MainModule.Entities
 
         public GuiaEntity Guia { get; set; }
         public ProductoEntity Producto { get; set; }
+
+        public int Version { get; set; }
     }
 }

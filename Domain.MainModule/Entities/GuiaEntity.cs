@@ -16,9 +16,11 @@ namespace Domain.MainModule.Entities
         public string SupervisorExtraccionMuestra { get; set; }
         public string Comentario { get; set; }
         public string NombreArchivo { get; set; }
-        public string GuiaAdjunta { get; set; }
+        public string GuiaAdjunta { get; set; }        
         public int Estado { get; set; }
 
         public virtual ICollection<DetalleGuiaEntity> Detalles { get; set; }
+
+        public long NumeroGuia { get; set; }
     }
 }

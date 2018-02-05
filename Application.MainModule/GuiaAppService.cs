@@ -3,12 +3,11 @@ using Application.MainModule.Core;
 using Application.MainModule.Interfaces;
 using AutoMapper;
 using Domain.MainModule.Entities;
+using Domain.MainModule.Osinergmin;
 using Infraestructura.Data.MainModule.Core;
 using Infraestructura.Data.MainModule.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.MainModule
@@ -16,17 +15,20 @@ namespace Application.MainModule
     public class GuiaAppService : BaseAppService, IGuiaAppService
     {
         private readonly IGuiaRepository _guiaRepository;
-        private readonly IDetalleGuiaRepository _detalleGuiaRepository;        
+        private readonly IDetalleGuiaRepository _detalleGuiaRepository;
+        private readonly IOsinergminRepository _osinergminRepository;
 
         public GuiaAppService(
             IUnitOfWork unitOfWork,
             IMapper mapper,
             IGuiaRepository guiaRepository, 
-            IDetalleGuiaRepository detalleGuiaRepository)
+            IDetalleGuiaRepository detalleGuiaRepository,
+            IOsinergminRepository osinergminRepository)
             :base(unitOfWork, mapper)
         {
             _guiaRepository = guiaRepository;
             _detalleGuiaRepository = detalleGuiaRepository;
+            _osinergminRepository = osinergminRepository;
         }
 
         public IEnumerable<GuiaListadoDto> ObtenerListadoGuia()
@@ -47,14 +49,21 @@ namespace Application.MainModule
             return _mapper.Map<GuiaEntidadDto>(entidadDomain);
         }
 
-        public async Task Agregar(GuiaEntidadDto entidadDto)
+        public async Task<OsinergminResponse> Agregar(GuiaEntidadDto entidadDto)
         {
-            _unitOfWork.BeginTransaction();
-
             var entidadDomain = _mapper.Map<GuiaEntity>(entidadDto);
-            await _guiaRepository.Add(entidadDomain);
+            var responseOsinergmin = await _osinergminRepository.RegistrarGuiaOsinergmin(entidadDomain);
 
-            _unitOfWork.SaveChanges();
+            if (responseOsinergmin.Exito)
+            {
+                _unitOfWork.BeginTransaction();
+
+                await _guiaRepository.Add(entidadDomain);
+
+                _unitOfWork.SaveChanges();
+            }           
+
+            return responseOsinergmin;
         }
 
         public void Eliminar(long id)
@@ -67,14 +76,20 @@ namespace Application.MainModule
             _unitOfWork.SaveChanges();
         }
 
-        public async Task Actualizar(GuiaEntidadDto entidadDto)
+        public async Task<OsinergminResponse> Actualizar(GuiaEntidadDto entidadDto)
         {
-            _unitOfWork.BeginTransaction();
-
             var entidadDomain = await _guiaRepository.Get(entidadDto.Id, false);
             entidadDomain = _mapper.Map(entidadDto, entidadDomain);
 
-            _unitOfWork.SaveChanges();
+            var responseOsinergmin = await _osinergminRepository.RegistrarActualizarDetalle(entidadDomain);
+
+            if (responseOsinergmin.Exito)
+            {
+                _unitOfWork.BeginTransaction();
+                _unitOfWork.SaveChanges();
+            }          
+
+            return responseOsinergmin;
         }
     }
 }
