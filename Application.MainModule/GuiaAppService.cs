@@ -91,5 +91,19 @@ namespace Application.MainModule
 
             return responseOsinergmin;
         }
+
+        public async Task<OsinergminResponse> PresentarOsinergmin(int guiaId)
+        {
+            var guiaDomain = await _guiaRepository.Get(guiaId);
+            return await _osinergminRepository.PresentarOsinergmin(guiaDomain);
+        }
+
+        public async Task<OsinergminResponse> ValidarMuestra(int guiaId, long codigoVerificacion)
+        {
+            _unitOfWork.BeginTransaction();
+
+            var guiaDomain = await _guiaRepository.Get(guiaId);
+            return await _osinergminRepository.ValidarMuestra(guiaDomain, codigoVerificacion);
+        }
     }
 }

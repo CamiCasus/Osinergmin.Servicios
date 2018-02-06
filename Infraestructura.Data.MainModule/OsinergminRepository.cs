@@ -2,6 +2,7 @@
 using Domain.MainModule.Osinergmin;
 using Infraestructura.Data.MainModule.Interfaces;
 using Osinergmin;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Infraestructura.Data.MainModule
@@ -89,6 +90,52 @@ namespace Infraestructura.Data.MainModule
                 }
 
                 detalleGuia.Version = respuestaDetalleOsinergmin.version;
+            }
+
+            return new OsinergminResponse { Exito = true };
+        }
+
+        public async Task<OsinergminResponse> PresentarOsinergmin(GuiaEntity guiaEntity)
+        {
+            var responseClienteOsinergmin = await _osinergminClient.presentarGuiaMuestrasAsync(
+                new guiaMuestra
+                {
+                    loginUsuario = _osinergminConfig.Usuario,
+                    claveUsuario = _osinergminConfig.Password,
+                    numeroGuia = guiaEntity.NumeroGuia,
+                    seEstaVersionando = "N"
+                });
+            var responsePresentarOsinergmin = responseClienteOsinergmin.presentarGuiaMuestrasResponse1;
+
+            if (responsePresentarOsinergmin.codigoResultado == TipoResultadoOsinergmin.Error)
+            {
+                return new OsinergminResponse
+                {
+                    Exito = false,
+                    Mensaje = Codigos.MENSAJES_ERROR[responsePresentarOsinergmin.codigoError]
+                };
+            }
+
+            return new OsinergminResponse { Exito = true };
+        }
+
+        public async Task<OsinergminResponse> ValidarMuestra(GuiaEntity guiaEntity, long codigoVerificacion)
+        {
+            var responseClienteOsinergmin = await _osinergminClient.obtenerValidacionPorMuestraAsync(
+                new getEnsayosPorMuestras
+                {
+                    loginUsuario = _osinergminConfig.Usuario,
+                    claveUsuario = _osinergminConfig.Password,
+                    numeroGuia = guiaEntity.NumeroGuia,
+                    codigoVerificacion = codigoVerificacion
+                });
+
+            var responseValidarMuestra = responseClienteOsinergmin.obtenerValidacionPorMuestraResponse1;
+
+            foreach (var ensayoMuestra in responseValidarMuestra)
+            {
+                var detalleGuia = guiaEntity.Detalles.FirstOrDefault(p => p.NumeroMuestra == ensayoMuestra.numeroMuestra);
+                detalleGuia.Ensayos = string.Join(",", ensayoMuestra.ensayos);
             }
 
             return new OsinergminResponse { Exito = true };

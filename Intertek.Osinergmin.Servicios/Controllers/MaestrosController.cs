@@ -36,5 +36,11 @@ namespace Distributed.Services.Controllers
         {
             return _itemTablaAppService.ObtenerDatosMaestro((int)TipoTablaEnum.Envases).ToList();
         }
+
+        [HttpGet("origenProducto")]
+        public List<ItemTablaEntidadDto> OrigenProducto()
+        {
+            return _itemTablaAppService.ObtenerDatosMaestro((int)TipoTablaEnum.OrigenProducto).ToList();
+        }
     }
 }

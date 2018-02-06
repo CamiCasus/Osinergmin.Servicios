@@ -14,5 +14,7 @@ namespace Application.MainModule.Interfaces
         Task<OsinergminResponse> Agregar(GuiaEntidadDto entidadDto);
         Task<OsinergminResponse> Actualizar(GuiaEntidadDto entidadDto);
         void Eliminar(long id);
+        Task<OsinergminResponse> PresentarOsinergmin(int guiaId);
+        Task<OsinergminResponse> ValidarMuestra(int guiaId, long codigoVerificacion);
     }
 }

@@ -9,5 +9,7 @@ namespace Infraestructura.Data.MainModule.Interfaces
     {
         Task<OsinergminResponse> RegistrarGuiaOsinergmin(GuiaEntity guiaEntity);
         Task<OsinergminResponse> RegistrarActualizarDetalle(GuiaEntity guiaEntity);
+        Task<OsinergminResponse> PresentarOsinergmin(GuiaEntity guiaEntity);
+        Task<OsinergminResponse> ValidarMuestra(GuiaEntity guiaEntity, long codigoVerificacion);
     }
 }

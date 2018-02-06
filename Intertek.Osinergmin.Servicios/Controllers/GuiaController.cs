@@ -66,5 +66,19 @@ namespace Intertek.Osinergmin.Servicios.Controllers
             _guiaAppService.Eliminar(id);
             return new NoContentResult();
         }
+
+        [HttpGet("presentar/{id}")]
+        public async Task<IActionResult> PresentarOsinergmin(int id)
+        {
+            var responseOsinergmin = await _guiaAppService.PresentarOsinergmin(id);
+            return new ObjectResult(responseOsinergmin);
+        }
+
+        [HttpPost("validarMuestra")]
+        public async Task<IActionResult> ValidarMuestra(ValidacionMuestraDto validacionMuestraDto)
+        {
+            var responseOsinergmin = await _guiaAppService.ValidarMuestra(validacionMuestraDto.GuiaId, validacionMuestraDto.CodigoVerificacion);
+            return new ObjectResult(responseOsinergmin);
+        }
     }
 }
