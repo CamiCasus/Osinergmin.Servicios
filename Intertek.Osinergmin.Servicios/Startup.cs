@@ -7,6 +7,7 @@ using Application.Dto.AutoMapper;
 using Application.MainModule;
 using Application.MainModule.Interfaces;
 using AutoMapper;
+using Distributed.Services.Handler;
 using Domain.MainModule.Osinergmin;
 using Infraestructura.Data.MainModule;
 using Infraestructura.Data.MainModule.Core;
@@ -55,6 +56,8 @@ namespace Intertek.Osinergmin.Servicios
             services.AddScoped<IUsuarioAppService, UsuarioAppService>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IOsinergminRepository, OsinergminRepository>();
+
+            var host = new WebHostBuilder().UseKestrel(o => { o.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(30); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,10 +66,11 @@ namespace Intertek.Osinergmin.Servicios
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
+            }            
 
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            app.UseMvc();
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
+            app.UseMvc();            
         }
     }
 }

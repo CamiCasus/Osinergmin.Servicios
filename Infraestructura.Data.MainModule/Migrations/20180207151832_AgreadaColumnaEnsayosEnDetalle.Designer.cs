@@ -11,9 +11,10 @@ using System;
 namespace Infraestructura.Data.MainModule.Migrations
 {
     [DbContext(typeof(MainModuleContext))]
-    partial class MainModuleContextModelSnapshot : ModelSnapshot
+    [Migration("20180207151832_AgreadaColumnaEnsayosEnDetalle")]
+    partial class AgreadaColumnaEnsayosEnDetalle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

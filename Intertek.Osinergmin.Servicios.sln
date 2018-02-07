@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.MainModule", "A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Dto", "Application.Dto\Application.Dto.csproj", "{B919CD27-FD8A-479A-9BE0-9333E9063E28}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntertekOsinergmin", "Presentation.Web\IntertekOsinergmin.csproj", "{A57506AF-E02C-404B-BFDC-256C4914D0E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{B919CD27-FD8A-479A-9BE0-9333E9063E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B919CD27-FD8A-479A-9BE0-9333E9063E28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B919CD27-FD8A-479A-9BE0-9333E9063E28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A57506AF-E02C-404B-BFDC-256C4914D0E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A57506AF-E02C-404B-BFDC-256C4914D0E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A57506AF-E02C-404B-BFDC-256C4914D0E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A57506AF-E02C-404B-BFDC-256C4914D0E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{F5796270-D995-4A18-86E9-315230656D11} = {2EF1A55F-DE71-451D-A5AB-AD7CE3F84736}
 		{5F4B7C77-23D4-4CDA-9590-4019537ED91C} = {2C76E99E-4FD1-42F7-8C0A-5BE789593BD6}
 		{B919CD27-FD8A-479A-9BE0-9333E9063E28} = {2C76E99E-4FD1-42F7-8C0A-5BE789593BD6}
+		{A57506AF-E02C-404B-BFDC-256C4914D0E4} = {9C1E947B-4A9B-418F-8A8F-2F66A3FC6772}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8B92CEAA-2F93-473F-9D0A-13475931490E}
