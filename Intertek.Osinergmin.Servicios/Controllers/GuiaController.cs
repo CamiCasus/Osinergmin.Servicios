@@ -75,7 +75,7 @@ namespace Intertek.Osinergmin.Servicios.Controllers
         }
 
         [HttpPost("validarMuestra")]
-        public async Task<IActionResult> ValidarMuestra(ValidacionMuestraDto validacionMuestraDto)
+        public async Task<IActionResult> ValidarMuestra([FromBody]ValidacionMuestraDto validacionMuestraDto)
         {
             var responseOsinergmin = await _guiaAppService.ValidarMuestra(validacionMuestraDto.GuiaId, validacionMuestraDto.CodigoVerificacion);
             return new ObjectResult(responseOsinergmin);

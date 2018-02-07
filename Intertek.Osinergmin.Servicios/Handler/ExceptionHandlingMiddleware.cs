@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,12 @@ namespace Distributed.Services.Handler
     public class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate next;
+        private readonly ILogger _logger;
 
         public ExceptionHandlingMiddleware(RequestDelegate next)
         {
             this.next = next;
+            //_logger = logger;
         }
 
         public async Task Invoke(HttpContext context /* other scoped dependencies */)
@@ -25,6 +28,7 @@ namespace Distributed.Services.Handler
             }
             catch (Exception ex)
             {
+                //_logger.LogError(ex, "");
                 throw;
             }
         }
