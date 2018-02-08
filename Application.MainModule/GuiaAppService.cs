@@ -102,7 +102,7 @@ namespace Application.MainModule
         {
             _unitOfWork.BeginTransaction();
 
-            var guiaDomain = await _guiaRepository.Get(guiaId);
+            var guiaDomain = await _guiaRepository.Get(guiaId, false);
             var responseOsinergmin = await _osinergminRepository.ValidarMuestra(guiaDomain, codigoVerificacion);
 
             if (responseOsinergmin.Exito)
