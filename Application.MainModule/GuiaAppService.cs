@@ -39,7 +39,7 @@ namespace Application.MainModule
 
         public IEnumerable<DetalleGuiaListadoDto> ObtenerDetalleGuiaListado(int guiaId)
         {
-            var resultadoEntidad = _detalleGuiaRepository.Find(p => p.GuiaId == guiaId).ToList();
+            var resultadoEntidad = _detalleGuiaRepository.Find(p => p.GuiaId == guiaId && p.Ensayos != null).ToList();
             return _mapper.Map<IEnumerable<DetalleGuiaListadoDto>>(resultadoEntidad);
         }
 

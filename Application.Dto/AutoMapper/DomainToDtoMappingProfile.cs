@@ -11,7 +11,11 @@ namespace Application.Dto.AutoMapper
         public DomainToDtoMappingProfile()
         {
             CreateMap<GuiaEntity, GuiaListadoDto>();
-            CreateMap<DetalleGuiaEntity, DetalleGuiaListadoDto>();
+
+            CreateMap<DetalleGuiaEntity, DetalleGuiaListadoDto>()
+                .ForMember(p => p.TipoMuestra, x => x.MapFrom(d => d.Producto.TipoProducto))
+                .ForMember(p => p.Guia, x => x.MapFrom(d => d.Guia.Codigo));
+
             CreateMap<GuiaEntity, GuiaEntidadDto>()
                 .ForMember(p => p.GuiaAdjunta, x => x.Ignore())
                 .ForMember(d => d.FechaRecepcion, x => x.MapFrom(p => p.FechaRecepcion.ToString("yyyy-MM-dd")))
