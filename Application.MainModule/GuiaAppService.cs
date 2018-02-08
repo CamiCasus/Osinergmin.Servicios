@@ -103,7 +103,15 @@ namespace Application.MainModule
             _unitOfWork.BeginTransaction();
 
             var guiaDomain = await _guiaRepository.Get(guiaId);
-            return await _osinergminRepository.ValidarMuestra(guiaDomain, codigoVerificacion);
+            var responseOsinergmin = await _osinergminRepository.ValidarMuestra(guiaDomain, codigoVerificacion);
+
+            if (responseOsinergmin.Exito)
+            {
+                _unitOfWork.BeginTransaction();
+                _unitOfWork.SaveChanges();
+            }
+
+            return responseOsinergmin;
         }
     }
 }

@@ -79,7 +79,10 @@ namespace Infraestructura.Data.MainModule
                         tipoEnvase = detalleGuia.TipoEnvase,
                         observaciones = detalleGuia.Observaciones,
                         nombreFoto = detalleGuia.NombreArchivo,
-                        fotoMuestra = detalleGuia.FotoMuestra
+                        fotoMuestra = detalleGuia.FotoMuestra,
+                        cantidadMuestrasSpecified = true,
+                        numeroGuiaSpecified = true,
+                        numeroMuestraSpecified = true
                     });
 
                 var respuestaDetalleOsinergmin = responseClienteDetalleOsinergmin.registrarGuiaMuestrasDetalleResponse1;
@@ -107,7 +110,8 @@ namespace Infraestructura.Data.MainModule
                     loginUsuario = _osinergminConfig.Usuario,
                     claveUsuario = _osinergminConfig.Password,
                     numeroGuia = guiaEntity.NumeroGuia,
-                    seEstaVersionando = "N"
+                    seEstaVersionando = "N",
+                    numeroGuiaSpecified = true
                 });
             var responsePresentarOsinergmin = responseClienteOsinergmin.presentarGuiaMuestrasResponse1;
 
@@ -131,7 +135,9 @@ namespace Infraestructura.Data.MainModule
                     loginUsuario = _osinergminConfig.Usuario,
                     claveUsuario = _osinergminConfig.Password,
                     numeroGuia = guiaEntity.NumeroGuia,
-                    codigoVerificacion = codigoVerificacion
+                    codigoVerificacion = codigoVerificacion,
+                    codigoVerificacionSpecified = true,
+                    numeroGuiaSpecified = true
                 });
 
             var responseValidarMuestra = responseClienteOsinergmin.obtenerValidacionPorMuestraResponse1;

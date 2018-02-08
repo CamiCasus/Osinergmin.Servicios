@@ -16,11 +16,35 @@ namespace Infraestructura.Data.MainModule
 
         public async override Task<GuiaEntity> Get(int id, bool @readonly = true)
         {
-            return await
-                    (@readonly ? DbSet.AsNoTracking() : DbSet)
-                        .Include(p => p.Detalles)
-                        .ThenInclude(d => d.Producto)
-                        .FirstOrDefaultAsync(p => p.Id == id);
+            //return await
+            //        (@readonly ? DbSet.AsNoTracking() : DbSet)
+            //            .Include(p => p.Detalles)
+            //            .ThenInclude(d => d.Producto)
+            //            .FirstOrDefaultAsync(p => p.Id == id);
+
+            string query = @"SELECT [Id]
+                              ,[Codigo]
+                              ,[Comentario]
+                              ,[DniRepresentanteIntertek]
+                              ,[DniRepresentanteOsinergmin]
+                              ,[Estado]
+                              ,[FechaRecepcion]
+                              , '' AS [GuiaAdjunta]
+                              ,[NombreArchivo]
+                              ,[RepresentanteIntertek]
+                              ,[RepresentanteOsinergmin]
+                              ,[SupervisorExtraccionMuestra]
+                              ,[NumeroGuia] 
+                            FROM Guias
+                            WHERE Id = {0}";
+
+            var guiaActual = await (@readonly ? DbSet.AsNoTracking() : DbSet)
+                                                    .FromSql(query, id)
+                                                    .Include(d => d.Detalles)
+                                                    .ThenInclude(d => d.Producto)
+                                                    .SingleOrDefaultAsync();
+
+            return guiaActual;
         }
     }
 }
