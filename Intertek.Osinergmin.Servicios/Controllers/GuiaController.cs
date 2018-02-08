@@ -3,10 +3,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Dto;
 using Application.MainModule.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Intertek.Osinergmin.Servicios.Controllers
 {
+    //[Authorize(Policy = "ApiUser")]
     [Produces("application/json")]
     [Route("api/Guia")]
     public class GuiaController : Controller

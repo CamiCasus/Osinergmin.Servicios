@@ -1,4 +1,5 @@
-﻿using Application.MainModule.Core;
+﻿using Application.Dto;
+using Application.MainModule.Core;
 using Application.MainModule.Interfaces;
 using AutoMapper;
 using Infraestructura.Data.MainModule.Core;
@@ -22,10 +23,13 @@ namespace Application.MainModule
             _usuarioRepository = usuarioRepository;
         }
 
-        public bool Autenticar(string usuario, string password)
+        public UsuarioLoginDto Autenticar(string usuario, string password)
         {
             var resultado =_usuarioRepository.Find(p => p.Usuario == usuario && p.Password == password);
-            return resultado.Any();
+            var usuarioEncontrado = resultado.FirstOrDefault();
+
+            var usuarioDto = _mapper.Map<UsuarioLoginDto>(usuarioEncontrado);
+            return usuarioDto;
         }
     }
 }

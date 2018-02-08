@@ -11,6 +11,8 @@ namespace Application.Dto.AutoMapper
         public DomainToDtoMappingProfile()
         {
             CreateMap<GuiaEntity, GuiaListadoDto>();
+            CreateMap<UsuarioEntity, UsuarioLoginDto>();
+
 
             CreateMap<DetalleGuiaEntity, DetalleGuiaListadoDto>()
                 .ForMember(p => p.TipoMuestra, x => x.MapFrom(d => d.Producto.TipoProducto))
