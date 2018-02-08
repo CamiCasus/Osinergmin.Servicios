@@ -11,10 +11,12 @@ namespace Infraestructura.Data.MainModule
     {
         private readonly LabCalidadPortTypeClient _osinergminClient;
         private readonly OsinergminConfig _osinergminConfig;
+        private readonly IProductoRepository _productoRepository;
 
-        public OsinergminRepository(OsinergminConfig osinergminConfig)
+        public OsinergminRepository(IProductoRepository productoRepository, OsinergminConfig osinergminConfig)
         {
             _osinergminConfig = osinergminConfig;
+            _productoRepository = productoRepository;
             _osinergminClient = new LabCalidadPortTypeClient();
         }
 
@@ -57,6 +59,8 @@ namespace Infraestructura.Data.MainModule
         {
             foreach (var detalleGuia in guiaEntity.Detalles)
             {
+                var productoActual = detalleGuia.Producto ?? await _productoRepository.Get(detalleGuia.ProductoId);
+
                 var responseClienteDetalleOsinergmin = await _osinergminClient.registrarGuiaMuestrasDetalleAsync(
                     new detalleMuestra
                     {
@@ -64,7 +68,7 @@ namespace Infraestructura.Data.MainModule
                         claveUsuario = _osinergminConfig.Password,
                         cantidadMuestras = detalleGuia.CantidadMuestras,
                         codigoEstablecimiento = detalleGuia.CodigoEstablecimiento,
-                        codigoProducto = detalleGuia.Producto.Codigo,
+                        codigoProducto = productoActual.Codigo,
                         fechaMuestreo = detalleGuia.FechaMuestreo.ToString("dd/MM/yyyy"),
                         numeroActa = detalleGuia.NumeroActa,
                         numeroGuia = guiaEntity.NumeroGuia,
