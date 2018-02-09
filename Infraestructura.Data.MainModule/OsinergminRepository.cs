@@ -208,13 +208,39 @@ namespace Infraestructura.Data.MainModule
                     contenidoSolidos = informeEnsayoLiquido.ContenidoSolidos,
                     contenidoGomas = informeEnsayoLiquido.ContenidoGomas,
                     puntoCongelamiento = informeEnsayoLiquido.PuntoCongelamiento,
+                    aguaSedimentos = informeEnsayoLiquido.AguaSedimentos,
                     determinacionBenceno = informeEnsayoLiquido.DeterminacionBenceno,
                     aguaPorDestilacion = informeEnsayoLiquido.AguaPorDestilacion,
                     contaminacionParticulas = informeEnsayoLiquido.ContaminacionParticulas,
                     indiceCetanoFme = informeEnsayoLiquido.IndiceCetanoFme,
                     color = informeEnsayoLiquido.Color,
                     resultadoFinal = informeEnsayoLiquido.ResultadoFinal,
-                    remanenteRetirado = informeEnsayoLiquido.RemanenteRetirado                    
+                    remanenteRetirado = informeEnsayoLiquido.RemanenteRetirado,
+                    astmd86_10pSpecified = true,
+                    astmd86_20pSpecified = true,
+                    astmd86_50pSpecified = true,
+                    astmd86_5pSpecified = true,
+                    astmd86_90pSpecified = true,
+                    astmd86_95pSpecified = true,
+                    astmd86_perdidasSpecified = true,
+                    astmd86_pfeSpecified = true,
+                    astmd86_pieSpecified = true,
+                    astmd86_recupSpecified = true,
+                    astmd86_residuoSpecified = true,
+                    contenidoFameVolumenSpecified = true,
+                    contenidoManganesoSpecified = true,
+                    densidadRelativaSpecified = true,
+                    determinacionBencenoSpecified = true,
+                    indiceCetanoBajoAzufreSpecified = true,
+                    gravidadApiSpecified = true,
+                    indiceCetanoProcedenciaASpecified = true,
+                    indiceCetanoProcedenciaBSpecified = true,
+                    indiceCetanoSpecified = true,
+                    nroGuiaSpecified = true,
+                    nroMuestraSpecified = true,
+                    presionVaporReidSpecified = true,
+                    reaccionAlAguaSpecified = true,
+                    viscosidadCinematicaSpecified = true, 
                 });
 
             var responseRegistroInformeEnsayoLiquido = responseClienteOsinergmin.registrarInformeLabLiquidoCalidadResponse1;
@@ -264,7 +290,13 @@ namespace Infraestructura.Data.MainModule
                     cis2butenoMolSpecified = true,
                     densidadRelativaSpecified = true,
                     determinacionEtilMercaptanoSpecified = true,
-                    
+                    isobutanoMolSpecified = true ,
+                    isopentanoMolSpecified = true,
+                    nbutanoMolSpecified = true,
+                    nroGuiaSpecified =  true,
+                    nroMuestraSpecified= true,
+                    presionVaporSpecified = true,
+                    propanoMolSpecified = true
                 });
 
             var responseRegistroInformeEnsayoGlp = responseClienteOsinergmin.registrarInformeLabGlpCalidadResponse1;
