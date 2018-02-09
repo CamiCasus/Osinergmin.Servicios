@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Intertek.Osinergmin.Servicios.Controllers
 {
-    //[Authorize(Policy = "ApiUser")]
+    [Authorize(Policy = "ApiUser")]
     [Produces("application/json")]
     [Route("api/Guia")]
     public class GuiaController : Controller

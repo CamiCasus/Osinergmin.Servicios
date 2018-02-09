@@ -30,7 +30,6 @@ namespace Distributed.Services.Controllers
         [HttpPost("/api/autenticar")]
         public async Task<IActionResult> Autenticar([FromBody] UsuarioLoginDto login)
         {
-            //var resultado = _usuarioAppService.Autenticar(login.Usuario, login.Password);
             if (login == null)
             {
                 return BadRequest();

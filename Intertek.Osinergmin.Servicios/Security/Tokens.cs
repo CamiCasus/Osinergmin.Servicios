@@ -7,7 +7,7 @@ namespace Distributed.Services.Security
 {
     public class Tokens
     {
-        public static async Task<string> GenerateJwt(
+        public static async Task<object> GenerateJwt(
                 ClaimsIdentity identity, 
                 IJwtFactory jwtFactory, 
                 string userName, 
@@ -21,7 +21,7 @@ namespace Distributed.Services.Security
                 expires_in = (int)jwtOptions.ValidFor.TotalSeconds
             };
 
-            return JsonConvert.SerializeObject(response, serializerSettings);
+            return response;
         }
     }
 }
