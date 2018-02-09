@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
 using Infraestructura.Data.MainModule.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.MainModule.Core
 {

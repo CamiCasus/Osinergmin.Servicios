@@ -18,18 +18,21 @@ namespace Application.MainModule
         private readonly IGuiaRepository _guiaRepository;
         private readonly IDetalleGuiaRepository _detalleGuiaRepository;
         private readonly IOsinergminRepository _osinergminRepository;
+        private readonly IInformeEnsayoRepository _informeEnsayoRepository;
 
         public GuiaAppService(
             IUnitOfWork unitOfWork,
             IMapper mapper,
             IGuiaRepository guiaRepository, 
             IDetalleGuiaRepository detalleGuiaRepository,
+            IInformeEnsayoRepository informeEnsayoRepository,
             IOsinergminRepository osinergminRepository)
             :base(unitOfWork, mapper)
         {
             _guiaRepository = guiaRepository;
             _detalleGuiaRepository = detalleGuiaRepository;
             _osinergminRepository = osinergminRepository;
+            _informeEnsayoRepository = informeEnsayoRepository;
         }
 
         public IEnumerable<GuiaListadoDto> ObtenerListadoGuia()
@@ -118,19 +121,24 @@ namespace Application.MainModule
         public async Task<OsinergminResponse> RegistrarInformeEnsayo(InformeEnsayoEntidadDto informeEnsayoEntidadDto)
         {
             OsinergminResponse respuesta;
+            InformeEnsayoEntity informeEnsayoEntidad = informeEnsayoEntidad = await _informeEnsayoRepository.Get(informeEnsayoEntidadDto.Id, false);
 
-            if(informeEnsayoEntidadDto is InformeEnsayoLiquidoEntidadDto)
+            bool esNuevoRegistro = informeEnsayoEntidad == null;
+
+            if (informeEnsayoEntidadDto is InformeEnsayoLiquidoEntidadDto)
             {
-                var informeEnsayoLiquidoDto = informeEnsayoEntidadDto as InformeEnsayoLiquidoEntidadDto;
-                var informeEnsayoLiquidoEntidad = _mapper.Map<InformeEnsayoLiquidoEntity>(informeEnsayoLiquidoDto);
+                var informeEnsayoLiquidoDto = informeEnsayoEntidadDto as InformeEnsayoLiquidoEntidadDto;                
+                var informeEnsayoLiquidoEntidad = _mapper.Map(informeEnsayoLiquidoDto, informeEnsayoEntidad as InformeEnsayoLiquidoEntity);
 
+                informeEnsayoEntidad = informeEnsayoLiquidoEntidad;
                 respuesta = await _osinergminRepository.RegistrarInformeEnsayoCombustibleLiquido(informeEnsayoLiquidoEntidad);
             }
             else if(informeEnsayoEntidadDto is InformeEnsayoGlpEntidadDto)
             {
                 var informeEnsayoGlpDto = informeEnsayoEntidadDto as InformeEnsayoGlpEntidadDto;
-                var informeEnsayoGlpEntidad = _mapper.Map<InformeEnsayoGlpEntity>(informeEnsayoGlpDto);
+                var informeEnsayoGlpEntidad = _mapper.Map(informeEnsayoGlpDto, informeEnsayoEntidad as InformeEnsayoGlpEntity);
 
+                informeEnsayoEntidad = informeEnsayoGlpEntidad;
                 respuesta = await _osinergminRepository.RegistrarInformeEnsayoGlp(informeEnsayoGlpEntidad);
             }
             else
@@ -138,8 +146,15 @@ namespace Application.MainModule
                 throw new Exception("El parametro enviado no pertenece a ningun tipo de informe de ensayo");
             }
 
-            _unitOfWork.BeginTransaction();
-            _unitOfWork.SaveChanges();
+            if (respuesta.Exito)
+            {
+                _unitOfWork.BeginTransaction();
+
+                if (esNuevoRegistro)
+                    await _informeEnsayoRepository.Add(informeEnsayoEntidad);
+
+                _unitOfWork.SaveChanges();
+            }           
 
             return respuesta;
         }

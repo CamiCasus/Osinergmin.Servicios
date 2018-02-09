@@ -21,6 +21,9 @@ namespace Infraestructura.Data.MainModule
             builder.ApplyConfiguration(new ItemTablaEntityConfig());
             builder.ApplyConfiguration(new ProductoEntityConfig());
             builder.ApplyConfiguration(new UsuarioEntityConfig());
+            builder.ApplyConfiguration(new InformeEnsayoEntityConfig());
+            builder.ApplyConfiguration(new InformeEnsayoLiquidoEntityConfig());
+            builder.ApplyConfiguration(new InformeEnsayoGlpEntityConfig());
         }
 
         public DbSet<GuiaEntity> Guias { get; set; }
@@ -29,5 +32,8 @@ namespace Infraestructura.Data.MainModule
         public DbSet<TablaEntity> Tablas { get; set; }
         public DbSet<ItemTablaEntity> ItemsTabla { get; set; }
         public DbSet<UsuarioEntity> Usuarios { get; set; }
+        public DbSet<InformeEnsayoEntity> InformesEnsayos { get; set; }
+        public DbSet<InformeEnsayoLiquidoEntity> InformesEnsayosLiquidos { get; set; }
+        public DbSet<InformeEnsayoGlpEntity> InformesEnsayosGlp { get; set; }
     }
 }

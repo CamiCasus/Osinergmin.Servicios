@@ -1,9 +1,6 @@
 ﻿using Domain.MainModule.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Infraestructura.Data.MainModule.EntityConfigs
 {

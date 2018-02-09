@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Application.Dto
+﻿namespace Application.Dto
 {
     public class DetalleGuiaEntidadDto
     {
@@ -19,6 +15,7 @@ namespace Application.Dto
         public string NumeroPrescintoLaboratorio { get; set; }
         public string OrigenProducto { get; set; }
         public string TipoEnvase { get; set; }
+        public string NombreEnvase { get; set; }
         public string NombreArchivo { get; set; }
         public string FotoMuestra { get; set; }
         public int TipoMuestra { get; set; }

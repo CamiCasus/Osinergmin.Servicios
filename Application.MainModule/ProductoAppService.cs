@@ -4,9 +4,7 @@ using Application.MainModule.Interfaces;
 using AutoMapper;
 using Infraestructura.Data.MainModule.Core;
 using Infraestructura.Data.MainModule.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Application.MainModule
 {

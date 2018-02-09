@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Application.Dto.Enums
+﻿namespace Application.Dto.Enums
 {
     public enum TipoTablaEnum : int
     {

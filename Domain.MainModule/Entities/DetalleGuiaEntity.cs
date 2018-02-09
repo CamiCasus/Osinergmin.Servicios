@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.MainModule.Entities
 {
@@ -25,6 +23,7 @@ namespace Domain.MainModule.Entities
 
         public GuiaEntity Guia { get; set; }
         public ProductoEntity Producto { get; set; }
+        public InformeEnsayoEntity InformeEnsayo { get; set; }
 
         public int Version { get; set; }
         public string Ensayos { get; set; }

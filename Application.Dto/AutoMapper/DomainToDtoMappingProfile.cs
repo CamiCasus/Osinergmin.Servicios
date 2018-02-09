@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
 using Domain.MainModule.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.Dto.AutoMapper
 {
@@ -12,7 +9,6 @@ namespace Application.Dto.AutoMapper
         {
             CreateMap<GuiaEntity, GuiaListadoDto>();
             CreateMap<UsuarioEntity, UsuarioLoginDto>();
-
 
             CreateMap<DetalleGuiaEntity, DetalleGuiaListadoDto>()
                 .ForMember(p => p.TipoMuestra, x => x.MapFrom(d => d.Producto.TipoProducto))
@@ -27,7 +23,8 @@ namespace Application.Dto.AutoMapper
                 .ForMember(p => p.FotoMuestra, x => x.Ignore())
                 .ForMember(d => d.FechaMuestreo, x => x.MapFrom(p => p.FechaMuestreo.ToString("yyyy-MM-dd")))
                 .ForMember(d => d.TipoProducto, x => x.MapFrom(p => p.Producto.TipoProducto))
-                .ForMember(d => d.NombreProducto, x => x.MapFrom(p => p.Producto.Nombre));
+                .ForMember(d => d.NombreProducto, x => x.MapFrom(p => p.Producto.Nombre))
+                .ForMember(d=> d.NombreEnvase, x=>x.MapFrom(p=>p.TipoEnvase;
 
             CreateMap<ProductoEntity, ProductoEntidadDto>();
             CreateMap<ItemTablaEntity, ItemTablaEntidadDto>();

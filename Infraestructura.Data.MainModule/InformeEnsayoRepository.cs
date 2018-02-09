@@ -9,27 +9,27 @@ using System.Threading.Tasks;
 
 namespace Infraestructura.Data.MainModule
 {
-    public class DetalleGuiaRepository : Repository<DetalleGuiaEntity, int>, IDetalleGuiaRepository
+    public class InformeEnsayoRepository : Repository<InformeEnsayoEntity, int>, IInformeEnsayoRepository
     {
-        public DetalleGuiaRepository(DbContext dbContext)
+        public InformeEnsayoRepository(DbContext dbContext)
             : base(dbContext)
         {
 
         }
 
-        public override IQueryable<DetalleGuiaEntity> Find(Expression<Func<DetalleGuiaEntity, bool>> predicate, bool @readonly = true)
+        public override IQueryable<InformeEnsayoEntity> Find(Expression<Func<InformeEnsayoEntity, bool>> predicate, bool @readonly = true)
         {
             return (@readonly ? DbSet.AsNoTracking() : DbSet)
-                        .Include(p => p.Guia)
-                        .Include(p => p.Producto)
+                        .Include(p => p.DetalleGuia)
+                        .ThenInclude(d => d.Guia)
                         .Where(predicate);
         }
 
-        public override Task<DetalleGuiaEntity> Get(int id, bool @readonly = true)
+        public override Task<InformeEnsayoEntity> Get(int id, bool @readonly = true)
         {
             return (@readonly ? DbSet.AsNoTracking() : DbSet)
-                        .Include(p => p.Guia)
-                        .Include(p => p.Producto)
+                        .Include(p => p.DetalleGuia)
+                        .ThenInclude(d => d.Guia)
                         .FirstOrDefaultAsync(p => p.Id == id);
         }
     }

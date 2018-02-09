@@ -60,6 +60,7 @@ namespace Intertek.Osinergmin.Servicios
             services.AddScoped<IUsuarioAppService, UsuarioAppService>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IOsinergminRepository, OsinergminRepository>();
+            services.AddScoped<IInformeEnsayoRepository, InformeEnsayoRepository>();
 
             var host = new WebHostBuilder().UseKestrel(o => { o.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(30); });
         }

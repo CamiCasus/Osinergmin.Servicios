@@ -3,8 +3,7 @@ using Infraestructura.Data.MainModule.Core.Interfaces;
 
 namespace Infraestructura.Data.MainModule.Interfaces
 {
-    public interface IUsuarioRepository : IRepository<UsuarioEntity, int>
+    public interface IInformeEnsayoRepository : IRepository<InformeEnsayoEntity, int>
     {
-       
     }
 }

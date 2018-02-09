@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Infraestructura.Data.MainModule.Core
+﻿namespace Infraestructura.Data.MainModule.Core
 {
     public interface IUnitOfWork
     {
