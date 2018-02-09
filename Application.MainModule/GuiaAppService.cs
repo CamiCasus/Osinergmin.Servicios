@@ -6,6 +6,7 @@ using Domain.MainModule.Entities;
 using Domain.MainModule.Osinergmin;
 using Infraestructura.Data.MainModule.Core;
 using Infraestructura.Data.MainModule.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -112,6 +113,35 @@ namespace Application.MainModule
             }
 
             return responseOsinergmin;
+        }
+
+        public async Task<OsinergminResponse> RegistrarInformeEnsayo(InformeEnsayoEntidadDto informeEnsayoEntidadDto)
+        {
+            OsinergminResponse respuesta;
+
+            if(informeEnsayoEntidadDto is InformeEnsayoLiquidoEntidadDto)
+            {
+                var informeEnsayoLiquidoDto = informeEnsayoEntidadDto as InformeEnsayoLiquidoEntidadDto;
+                var informeEnsayoLiquidoEntidad = _mapper.Map<InformeEnsayoLiquidoEntity>(informeEnsayoLiquidoDto);
+
+                respuesta = await _osinergminRepository.RegistrarInformeEnsayoCombustibleLiquido(informeEnsayoLiquidoEntidad);
+            }
+            else if(informeEnsayoEntidadDto is InformeEnsayoGlpEntidadDto)
+            {
+                var informeEnsayoGlpDto = informeEnsayoEntidadDto as InformeEnsayoGlpEntidadDto;
+                var informeEnsayoGlpEntidad = _mapper.Map<InformeEnsayoGlpEntity>(informeEnsayoGlpDto);
+
+                respuesta = await _osinergminRepository.RegistrarInformeEnsayoGlp(informeEnsayoGlpEntidad);
+            }
+            else
+            {
+                throw new Exception("El parametro enviado no pertenece a ningun tipo de informe de ensayo");
+            }
+
+            _unitOfWork.BeginTransaction();
+            _unitOfWork.SaveChanges();
+
+            return respuesta;
         }
     }
 }

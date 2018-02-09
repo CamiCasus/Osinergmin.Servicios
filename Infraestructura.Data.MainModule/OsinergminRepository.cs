@@ -150,5 +150,55 @@ namespace Infraestructura.Data.MainModule
 
             return new OsinergminResponse { Exito = true };
         }
+
+        public async Task<OsinergminResponse> RegistrarInformeEnsayoCombustibleLiquido(InformeEnsayoLiquidoEntity informeEnsayoLiquido)
+        {
+            var responseClienteOsinergmin = await _osinergminClient.registrarInformeLabLiquidoCalidadAsync(
+                new informeLiquido
+                {
+
+                });
+
+            var responseRegistroInformeEnsayoLiquido = responseClienteOsinergmin.registrarInformeLabLiquidoCalidadResponse1;
+
+            if (responseRegistroInformeEnsayoLiquido.codigoResultado == TipoResultadoOsinergmin.Error)
+            {
+                return new OsinergminResponse
+                {
+                    Exito = false,
+                    Mensaje = Codigos.MENSAJES_ERROR[responseRegistroInformeEnsayoLiquido.codigoError]
+                };
+            }
+
+            informeEnsayoLiquido.Version = responseRegistroInformeEnsayoLiquido.version;
+            informeEnsayoLiquido.CodigoRecepcion = responseRegistroInformeEnsayoLiquido.codigoRecepcion;
+
+            return new OsinergminResponse { Exito = true };
+        }
+
+        public async Task<OsinergminResponse> RegistrarInformeEnsayoGlp(InformeEnsayoGlpEntity informeEnsayoGlp)
+        {
+            var responseClienteOsinergmin = await _osinergminClient.registrarInformeLabGlpCalidadAsync(
+                new informeGlp
+                {
+
+                });
+
+            var responseRegistroInformeEnsayoGlp = responseClienteOsinergmin.registrarInformeLabGlpCalidadResponse1;
+
+            if (responseRegistroInformeEnsayoGlp.codigoResultado == TipoResultadoOsinergmin.Error)
+            {
+                return new OsinergminResponse
+                {
+                    Exito = false,
+                    Mensaje = Codigos.MENSAJES_ERROR[responseRegistroInformeEnsayoGlp.codigoError]
+                };
+            }
+
+            informeEnsayoGlp.Version = responseRegistroInformeEnsayoGlp.version;
+            informeEnsayoGlp.CodigoRecepcion = responseRegistroInformeEnsayoGlp.codigoRecepcion;
+
+            return new OsinergminResponse { Exito = true };
+        }
     }
 }

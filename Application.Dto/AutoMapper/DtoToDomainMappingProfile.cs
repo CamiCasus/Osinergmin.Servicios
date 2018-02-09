@@ -12,15 +12,16 @@ namespace Application.Dto.AutoMapper
     {
         public DtoToDomainMappingProfile()
         {
-            CreateMap<GuiaEntidadDto, GuiaEntity>()
-                //.ForMember(d => d.GuiaAdjunta, x => x.MapFrom(p => Encoding.ASCII.GetString(p.GuiaAdjunta)))
+            CreateMap<GuiaEntidadDto, GuiaEntity>()               
                 .ForMember(d => d.FechaRecepcion, x => x.MapFrom(p => DateTime.ParseExact(p.FechaRecepcion, "yyyy-MM-dd", CultureInfo.InvariantCulture)))
                 .ForMember(d => d.Detalles, x => x.Ignore())
                 .AfterMap(AddOrUpdateDetails);
 
-            CreateMap<DetalleGuiaEntidadDto, DetalleGuiaEntity>()
-                //.ForMember(d => d.FotoMuestra, x => x.MapFrom(p => Encoding.ASCII.GetString(p.FotoMuestra)))
+            CreateMap<DetalleGuiaEntidadDto, DetalleGuiaEntity>()               
                 .ForMember(d => d.FechaMuestreo, x => x.MapFrom(p => DateTime.ParseExact(p.FechaMuestreo, "yyyy-MM-dd", CultureInfo.InvariantCulture)));
+
+            CreateMap<InformeEnsayoGlpEntidadDto, InformeEnsayoGlpEntity>();
+            CreateMap<InformeEnsayoLiquidoEntidadDto, InformeEnsayoLiquidoEntity>();
         }
 
         private void AddOrUpdateDetails(GuiaEntidadDto dto, GuiaEntity guiaEntity)

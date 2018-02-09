@@ -16,5 +16,6 @@ namespace Application.MainModule.Interfaces
         void Eliminar(long id);
         Task<OsinergminResponse> PresentarOsinergmin(int guiaId);
         Task<OsinergminResponse> ValidarMuestra(int guiaId, long codigoVerificacion);
+        Task<OsinergminResponse> RegistrarInformeEnsayo(InformeEnsayoEntidadDto informeEnsayoEntidadDto);
     }
 }

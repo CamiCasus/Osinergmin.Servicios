@@ -11,5 +11,7 @@ namespace Infraestructura.Data.MainModule.Interfaces
         Task<OsinergminResponse> RegistrarActualizarDetalle(GuiaEntity guiaEntity);
         Task<OsinergminResponse> PresentarOsinergmin(GuiaEntity guiaEntity);
         Task<OsinergminResponse> ValidarMuestra(GuiaEntity guiaEntity, long codigoVerificacion);
+        Task<OsinergminResponse> RegistrarInformeEnsayoCombustibleLiquido(InformeEnsayoLiquidoEntity informeEnsayoLiquido);
+        Task<OsinergminResponse> RegistrarInformeEnsayoGlp(InformeEnsayoGlpEntity informeEnsayoGlp);
     }
 }
