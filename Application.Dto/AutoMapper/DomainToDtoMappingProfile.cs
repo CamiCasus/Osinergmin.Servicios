@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using Application.Dto.AutoMapper.Resolvers;
+using Application.Dto.Enums;
+using AutoMapper;
 using Domain.MainModule.Entities;
 
 namespace Application.Dto.AutoMapper
@@ -24,7 +26,7 @@ namespace Application.Dto.AutoMapper
                 .ForMember(d => d.FechaMuestreo, x => x.MapFrom(p => p.FechaMuestreo.ToString("yyyy-MM-dd")))
                 .ForMember(d => d.TipoProducto, x => x.MapFrom(p => p.Producto.TipoProducto))
                 .ForMember(d => d.NombreProducto, x => x.MapFrom(p => p.Producto.Nombre))
-                .ForMember(d=> d.NombreEnvase, x=>x.MapFrom(p=>p.TipoEnvase;
+                .ForMember(d => d.NombreEnvase, opt => opt.MapFrom(p => ItemTablaResolver.GetNameByValue(TipoTablaEnum.Envases, p.TipoEnvase)));
 
             CreateMap<ProductoEntity, ProductoEntidadDto>();
             CreateMap<ItemTablaEntity, ItemTablaEntidadDto>();

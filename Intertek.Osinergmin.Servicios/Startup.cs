@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Text;
 using Application.Dto.AutoMapper;
+using Application.Dto.AutoMapper.Resolvers;
 using Application.MainModule;
 using Application.MainModule.Interfaces;
 using AutoMapper;
@@ -63,6 +64,7 @@ namespace Intertek.Osinergmin.Servicios
             services.AddScoped<IInformeEnsayoRepository, InformeEnsayoRepository>();
 
             var host = new WebHostBuilder().UseKestrel(o => { o.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(30); });
+            ItemTablaResolver.ServiceCollection = services;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
