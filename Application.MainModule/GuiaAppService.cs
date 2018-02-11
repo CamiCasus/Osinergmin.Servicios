@@ -146,7 +146,7 @@ namespace Application.MainModule
                 throw new Exception("El parametro enviado no pertenece a ningun tipo de informe de ensayo");
             }
 
-            if (respuesta.Exito)
+            if (true)
             {
                 _unitOfWork.BeginTransaction();
 
@@ -157,6 +157,18 @@ namespace Application.MainModule
             }           
 
             return respuesta;
+        }
+
+        public async Task<InformeEnsayoEntidadDto> ObtenerInformeEnsayo(int detalleGuiaId)
+        {
+            var informeEnsayoEntidad = await _informeEnsayoRepository.GetByDetalleId(detalleGuiaId);
+
+            if (informeEnsayoEntidad is InformeEnsayoLiquidoEntity)
+                return _mapper.Map<InformeEnsayoLiquidoEntidadDto>(informeEnsayoEntidad as InformeEnsayoLiquidoEntity);
+            else if (informeEnsayoEntidad is InformeEnsayoGlpEntity)
+                return _mapper.Map<InformeEnsayoGlpEntidadDto>(informeEnsayoEntidad as InformeEnsayoGlpEntity);
+            else
+                return default(InformeEnsayoEntidadDto);
         }
     }
 }

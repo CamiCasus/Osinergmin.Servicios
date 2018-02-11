@@ -30,12 +30,12 @@ namespace Intertek.Osinergmin.Servicios.Controllers
         public List<DetalleGuiaListadoDto> Detalle(int id)
         {
             return _guiaAppService.ObtenerDetalleGuiaListado(id).ToList();
-        }        
+        }
 
         [HttpGet("{guiaId}", Name = "GetTodo")]
         public async Task<IActionResult> GetById(int guiaId)
         {
-            var guiaEntidad = await _guiaAppService.ObtenerGuia(guiaId);            
+            var guiaEntidad = await _guiaAppService.ObtenerGuia(guiaId);
             return new ObjectResult(guiaEntidad);
         }
 
@@ -95,6 +95,19 @@ namespace Intertek.Osinergmin.Servicios.Controllers
         {
             var responseOsinergmin = await _guiaAppService.RegistrarInformeEnsayo(informeEnsayoLiquido);
             return new ObjectResult(responseOsinergmin);
+        }
+
+        [HttpGet("obtenerInformeEnsayo/{id}")]
+        public async Task<IActionResult> ObtenerInformeEnsayo(int id)
+        {
+            var informeEnsayo = await _guiaAppService.ObtenerInformeEnsayo(id);
+
+            if (informeEnsayo is InformeEnsayoLiquidoEntidadDto)
+                return new ObjectResult(informeEnsayo as InformeEnsayoLiquidoEntidadDto);
+            else if (informeEnsayo is InformeEnsayoGlpEntidadDto)
+                return new ObjectResult(informeEnsayo as InformeEnsayoGlpEntidadDto);
+            else
+                return new ObjectResult(null);
         }
     }
 }

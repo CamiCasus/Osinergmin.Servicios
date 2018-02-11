@@ -14,6 +14,7 @@ namespace Application.Dto.AutoMapper
 
             CreateMap<DetalleGuiaEntity, DetalleGuiaListadoDto>()
                 .ForMember(p => p.TipoMuestra, x => x.MapFrom(d => d.Producto.TipoProducto))
+                .ForMember(p => p.InformeEnsayoId, x => x.MapFrom(d => d.InformeEnsayo.Id))
                 .ForMember(p => p.Guia, x => x.MapFrom(d => d.Guia.Codigo));
 
             CreateMap<GuiaEntity, GuiaEntidadDto>()

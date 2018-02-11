@@ -32,5 +32,13 @@ namespace Infraestructura.Data.MainModule
                         .ThenInclude(d => d.Guia)
                         .FirstOrDefaultAsync(p => p.Id == id);
         }
+
+        public Task<InformeEnsayoEntity> GetByDetalleId(int detalleId, bool @readonly = true)
+        {
+            return (@readonly ? DbSet.AsNoTracking() : DbSet)
+                        .Include(p => p.DetalleGuia)
+                        .ThenInclude(d => d.Guia)
+                        .FirstOrDefaultAsync(p => p.DetalleGuiaId == detalleId);
+        }
     }
 }

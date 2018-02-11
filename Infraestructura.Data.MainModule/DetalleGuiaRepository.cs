@@ -22,6 +22,7 @@ namespace Infraestructura.Data.MainModule
             return (@readonly ? DbSet.AsNoTracking() : DbSet)
                         .Include(p => p.Guia)
                         .Include(p => p.Producto)
+                        .Include(p => p.InformeEnsayo)
                         .Where(predicate);
         }
 
@@ -30,6 +31,7 @@ namespace Infraestructura.Data.MainModule
             return (@readonly ? DbSet.AsNoTracking() : DbSet)
                         .Include(p => p.Guia)
                         .Include(p => p.Producto)
+                        .Include(p => p.InformeEnsayo)
                         .FirstOrDefaultAsync(p => p.Id == id);
         }
     }

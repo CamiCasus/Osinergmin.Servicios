@@ -17,5 +17,6 @@ namespace Application.MainModule.Interfaces
         Task<OsinergminResponse> PresentarOsinergmin(int guiaId);
         Task<OsinergminResponse> ValidarMuestra(int guiaId, long codigoVerificacion);
         Task<OsinergminResponse> RegistrarInformeEnsayo(InformeEnsayoEntidadDto informeEnsayoEntidadDto);
+        Task<InformeEnsayoEntidadDto> ObtenerInformeEnsayo(int detalleGuiaId);
     }
 }

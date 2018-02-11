@@ -7,5 +7,6 @@
         public int NumeroMuestra { get; set; }
         public int TipoMuestra { get; set; }
         public string Ensayos { get; set; }
+        public int? InformeEnsayoId { get; set; }
     }
 }
