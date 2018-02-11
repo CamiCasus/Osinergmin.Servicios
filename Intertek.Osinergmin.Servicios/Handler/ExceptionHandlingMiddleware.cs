@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+using Serilog;
 using System;
 using System.Threading.Tasks;
 
@@ -13,7 +13,6 @@ namespace Distributed.Services.Handler
         public ExceptionHandlingMiddleware(RequestDelegate next)
         {
             this.next = next;
-            //_logger = logger;
         }
 
         public async Task Invoke(HttpContext context /* other scoped dependencies */)
@@ -24,7 +23,7 @@ namespace Distributed.Services.Handler
             }
             catch (Exception ex)
             {
-                //_logger.LogError(ex, "");
+                //_logger.Error
                 throw;
             }
         }
