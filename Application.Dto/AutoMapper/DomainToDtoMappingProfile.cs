@@ -31,6 +31,8 @@ namespace Application.Dto.AutoMapper
 
             CreateMap<ProductoEntity, ProductoEntidadDto>();
             CreateMap<ItemTablaEntity, ItemTablaEntidadDto>();
+            CreateMap<InformeEnsayoLiquidoEntity, InformeEnsayoLiquidoEntidadDto>();
+            CreateMap<InformeEnsayoGlpEntity, InformeEnsayoGlpEntidadDto>();
         }
     }
 }
