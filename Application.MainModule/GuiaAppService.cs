@@ -146,15 +146,12 @@ namespace Application.MainModule
                 throw new Exception("El parametro enviado no pertenece a ningun tipo de informe de ensayo");
             }
 
-            if (true)
-            {
-                _unitOfWork.BeginTransaction();
+            _unitOfWork.BeginTransaction();
 
-                if (esNuevoRegistro)
-                    await _informeEnsayoRepository.Add(informeEnsayoEntidad);
+            if (esNuevoRegistro)
+                await _informeEnsayoRepository.Add(informeEnsayoEntidad);
 
-                _unitOfWork.SaveChanges();
-            }           
+            _unitOfWork.SaveChanges();
 
             return respuesta;
         }
