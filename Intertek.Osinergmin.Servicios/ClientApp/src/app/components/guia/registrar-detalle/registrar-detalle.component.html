@@ -1,0 +1,169 @@
+<form [formGroup]="formaDetalle" *ngIf="detalleGuiaActual">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group row">
+                <label for="txtNumeroMuestra" class="col-md-5 col-form-label">Número de Muestra</label>
+                <div class="col-md-7">
+                  <input formControlName="numeroMuestra" type="text" class="form-control" id="txtNumeroMuestra">                  
+                </div>
+              </div>
+            </div>
+
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="cblproductoId" class="col-md-5 col-form-label">Producto</label>
+            <div class="col-md-7">
+              <select (change)="onChangeProducto($event)" class="form-control custom-select" formControlName="productoId" id="cblproductoId"
+                [ngClass]="{'is-invalid': !formaDetalle.get('productoId').valid}">
+                <option *ngFor="let producto of productos" [value]="producto.id">{{producto.nombre}}</option>
+              </select>
+              <div class="invalid-feedback">
+                Seleccione un producto
+              </div>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="txtCantidadMuestras" class="col-md-5 col-form-label">Cantidad de Muestras</label>
+            <div class="col-md-7">
+              <input formControlName="cantidadMuestras" maxlength="1" type="text" class="form-control" id="txtCantidadMuestras" [ngClass]="{'is-invalid': !formaDetalle.get('cantidadMuestras').valid}">
+              <div class="invalid-feedback">
+                Ingrese cantidad de muestras
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="txtFechaMuestreo" class="col-md-5 col-form-label">Fecha de Muestreo</label>
+            <div class="col-md-7">
+              <input formControlName="fechaMuestreo" type="date" class="form-control" id="txtFechaMuestreo" [ngClass]="{'is-invalid': !formaDetalle.get('fechaMuestreo').valid}"
+                placeholder="dd/mm/yyyy">
+              <div class="invalid-feedback">
+                Ingrese fecha de muestreo
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="txtNumeroActa" class="col-md-5 col-form-label">Número de Acta</label>
+            <div class="col-md-7">
+              <input formControlName="numeroActa" type="text" class="form-control" id="txtNumeroActa" [ngClass]="{'is-invalid': !formaDetalle.get('numeroActa').valid}">
+              <div class="invalid-feedback">
+                Ingrese número de acta
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group row">
+              <label for="txtCodigoEstablecimiento" class="col-md-5 col-form-label">Código de Establecimiento</label>
+              <div class="col-md-7">
+                <input type="text" class="form-control" formControlName="codigoEstablecimiento" maxlength="12" id="txtCodigoEstablecimiento" [ngClass]="{'is-invalid': !formaDetalle.get('codigoEstablecimiento').valid}">
+                <div class="invalid-feedback">
+                  Ingrese código de establecimiento
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="txtNumeroPrescintoDirimencia" class="col-md-5 col-form-label">Número de Prescinto Dirimencia</label>
+            <div class="col-md-7">
+              <input formControlName="numeroPrescintoDirimencia" maxlength="10" type="text" class="form-control" [ngClass]="{'is-invalid': !formaDetalle.get('numeroPrescintoDirimencia').valid }"
+                id="txtNumeroPrescintoDirimencia">
+              <div class="invalid-feedback">
+                Ingrese número de Prescinto Dirimencia
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="txtNumeroPrescintoLaboratorio" class="col-md-5 col-form-label">Número de Prescinto Laboratorio</label>
+            <div class="col-md-7">
+              <input formControlName="numeroPrescintoLaboratorio" maxlength="10" type="text" class="form-control" [ngClass]="{'is-invalid': !formaDetalle.get('numeroPrescintoLaboratorio').valid }"
+                id="txtNumeroPrescintoLaboratorio">
+              <div class="invalid-feedback">
+                Ingrese número de Prescinto Laboratorio
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="cblOrigenProducto" class="col-md-5 col-form-label">Origen del Producto</label>
+            <div class="col-md-7">          
+              <select class="form-control custom-select" formControlName="origenProducto" id="cblOrigenProducto"
+                [ngClass]="{'is-invalid': !formaDetalle.get('origenProducto').valid}">
+                <option *ngFor="let origen of origenesProducto" [value]="origen.valor">{{origen.nombre}}</option>
+              </select>
+              <div class="invalid-feedback">
+                Seleccione el origen del producto
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="cblTipoEnvase" class="col-md-5 col-form-label">Tipo de Envase</label>
+            <div class="col-md-7">
+              <select (change)="onChangeEnvase($event)" class="form-control custom-select" formControlName="tipoEnvase" id="cblTipoEnvase" [ngClass]="{'is-invalid': !formaDetalle.get('tipoEnvase').valid}">
+                <option *ngFor="let envase of envases" [value]="envase.valor">{{envase.nombre}}</option>
+              </select>
+              <div class="invalid-feedback">
+                Seleccione un tipo de Envase
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="cblTipoEnvase" class="col-md-5 col-form-label">Foto</label>
+            <div class="col-md-7">
+              <input #fileDetalle type="file" accept="image/*" class="form-control d-sm-none" (change)="getFiles($event)">
+              <button (click)="openFileBrowser()" type="button" class="btn btn-sm btn-block text-left" [ngClass]="{'btn-outline-info': detalleGuiaActual.nombreArchivo != null, 'btn-outline-danger': detalleGuiaActual.nombreArchivo == null}">
+                <i class="fas fa-file fa-5x"></i>&nbsp;
+                <ng-container *ngIf="detalleGuiaActual.nombreArchivo != null">
+                  {{detalleGuiaActual.nombreArchivo}}
+                </ng-container>
+                <ng-container *ngIf="detalleGuiaActual.nombreArchivo == null">
+                  Seleccione una foto
+                </ng-container>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group row">
+            <label for="cblTipoEnvase" class="col-md-5 col-form-label">Observaciones</label>
+            <div class="col-md-7">
+              <textarea formControlName="observaciones" class="form-control" id="txtObservaciones" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<app-loading *ngIf="loading" ></app-loading>
