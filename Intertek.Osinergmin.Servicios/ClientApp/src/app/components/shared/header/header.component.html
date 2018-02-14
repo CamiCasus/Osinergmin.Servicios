@@ -1,8 +1,11 @@
 <header>
   <!-- Fixed navbar -->
-  <nav class="navbar navbar-dark bg-dark  justify-content-between">
+  <nav class="navbar navbar-dark bg-dark justify-content-between">
+    <!-- <a class="navbar-brand" href="#">
+      <img src="http://www.intertek.com.pe/images/global/intertek_logo_rebrand.png" height="60" class="d-inline-block align-top" alt="">
+    </a> -->
     <span class="navbar-brand">INTERTEK</span>
     <button *ngIf="this._autenticationService.isAutenticated()" class="btn btn-info btn-sm my-2 my-sm-0" type="button" (click)="cerrarSesion()">
-        <i class="fas fa-sign-out-alt"></i>&nbsp;Cerrar Sesión</button>
+      <i class="fas fa-sign-out-alt"></i>&nbsp;Cerrar Sesión</button>
   </nav>
 </header>
